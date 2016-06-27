@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="HelloWOrld" default="javaf" basedir=".">
+
+    <target name="init">
+
+        <property name="src.dir" value="src"/>
+        <property name="build.dir" value="build"/>
+        <property name="classes.dir" value="${build.dir}/classes"/>
+        <property name="jarname.name" value="HelloWorld"/>
+
+    </target>
+
+    <target name="MakeDir" depends="init">
+
+        <mkdir dir="${classes.dir}"/>
+
+    </target>
+
+    <target name="javac" depends="MakeDir">
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}" />
+    </target>
+
+    <target name="javaf" depends="javac">
+
+        <jar destfile="${build.dir}/${jarname.name}.jar"
+             basedir="${classes.dir}"
+             manifest="MANIFEST.MF"
+        />
+
+    </target>
+
+    <target name="clean" depends="init">
+    <delete dir="${build.dir}"/>
+    </target>
+
+
+</project>
